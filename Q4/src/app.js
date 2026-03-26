@@ -5,7 +5,21 @@
 
 function loadSession() {
     const raw = sessionStorage.getItem("session");
+    
+    try {
+        const prsd = sessionStorage = JSON.parse(prsd);
+
+        if (
+            prsd && typeof prsd.userID ===
+    
+    
     const session = JSON.parse(raw);          // No try/catch
+    
+    
+    
+    
+    
+    
     return session;                            // No field validation
 }
 
@@ -42,7 +56,7 @@ function sanitizeSearchQuery(input) {
     const final = filtered.slice(0,40);
 
     
-    return final,length ===0 ? null : final;   // UNSAFE – returns raw input unchanged
+    return final.length ===0 ? null : final;   // UNSAFE – returns raw input unchanged
 }
 
 function performSearch(query) {
