@@ -55,7 +55,7 @@ function saveDashboardState() {
 
 
 async function fetchIncidents() {
-    try(
+    try{
         const res = await fetch("/api/incidents"); 
 
     if (!res.ok) {
@@ -69,6 +69,7 @@ async function fetchIncidents() {
     return [];
 }
 }
+
                   
     
     
@@ -92,11 +93,28 @@ async function fetchIncidents() {
 
 function renderIncidents(incidents) {
     const container = document.getElementById("incident-list");
-    container.innerHTML = "";                  // Clear previous results
+    container.replaceChildren();
+    
+   if(!Array.isArray(incidents)) {
+       const error = document.createElement("listitem");
+       error.textContent = "Unable to show incidents right now";
+       container.appendChild(error);
+       return;
 
     incidents.forEach(function (incident) {
-        const item = document.createElement("li");
-        // UNSAFE – directly inserts API response as HTML
+        if (!incident ||
+            typeof incident.title !== "string" ||
+            incident.title.trim() === "" ||
+            !ACCEPTED_SEVERITIES.includes(incident.severity)
+        ) {
+            console.warn("Skipping invalid incident:", incident);
+            return;
+        }
+        
+        const item = document.createElement("listitem");
+        const title = dcoument.createElement("strong");
+        title.element.textContent = incident.title.trim();
+        
         item.innerHTML =
             "<strong>" + incident.title + "</strong>" +
             " <span class='severity severity-" + incident.severity + "'>" +
