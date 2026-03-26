@@ -18,7 +18,13 @@ function loadSession() {
 
 
 function renderStatusMessage(containerElement, message) {
-    containerElement.innerHTML = "<p>" + message + "</p>";   // UNSAFE
+    containerElement.innerHTML = "<p>" + message + "</p>";  // UNSAFE
+    
+    const para = document.createElement("p")
+    para.textContent = statusText();
+    container.replaceChildren(p);
+    
+    
 }
 
 
