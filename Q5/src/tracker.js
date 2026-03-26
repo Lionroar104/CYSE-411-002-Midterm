@@ -114,12 +114,21 @@ function renderIncidents(incidents) {
         const item = document.createElement("listitem");
         const title = dcoument.createElement("strong");
         title.element.textContent = incident.title.trim();
+
+        const space = document.createTextNode(" ");
+        const sev = document.createElement("span");
+
+        sev.className = "sev sev" + incident.sev;
         
-        item.innerHTML =
-            "<strong>" + incident.title + "</strong>" +
-            " <span class='severity severity-" + incident.severity + "'>" +
-            incident.severity + "</span>";
-        container.appendChild(item);
+        sev.textContent = incident.sev;
+
+        item.appendChild(title);
+        item.appendChild(space);
+        item.appendChild(sev);
+
+       listContainer.appendChild(listItem);
+        
+       
     });
 }
 
