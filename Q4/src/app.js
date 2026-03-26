@@ -36,13 +36,13 @@ function renderStatusMessage(containerElement, message) {
 
 
 function sanitizeSearchQuery(input) {
-    // TODO: Implement sanitization.
-    // Requirements:
-    //   - Allow only letters, digits, spaces, hyphens, underscores
-    //   - Trim leading/trailing whitespace before processing
-    //   - Max 40 characters
-    //   - Return null if the result is empty after sanitization
-    return input;   // UNSAFE – returns raw input unchanged
+    
+    const cleanstart = input.trim();
+    const newchar = cleanstart.replace(/[^A-Za-z0-9 _-]/g, "");
+    const final = filtered.slice(0,40);
+
+    
+    return final,length ===0 ? null : final;   // UNSAFE – returns raw input unchanged
 }
 
 function performSearch(query) {
