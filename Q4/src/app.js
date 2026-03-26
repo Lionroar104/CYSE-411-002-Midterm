@@ -9,18 +9,24 @@ function loadSession() {
     try {
         const prsd = sessionStorage = JSON.parse(prsd);
 
-        if (
-            prsd && typeof prsd.userID ===
-    
-    
-    const session = JSON.parse(raw);          // No try/catch
-    
-    
-    
-    
-    
-    
-    return session;                            // No field validation
+        if prsd &&
+            typeof prsd.userId === "string" && prsd.userId.trim() !== "" &&
+            typeof prsd.role === "string" && prsd.role.trim() !== "" &&
+            typeof prsd.displayName === "string" && prsd.displayName.trim() !== ""
+        )
+        {
+            return prsd;
+        }
+
+        return null;
+
+    }
+    catch (err) {
+        return null;
+    }
+        
+
+                         
 }
 
 
